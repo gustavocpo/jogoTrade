@@ -113,7 +113,16 @@ class Menus(Jogador):
         jogador.grana = jogador.grana + (Goods[good] * Planetas[planeta.nome_pla]["US"])
 
     def armar(self):
-        print("")
+        print("Cap %s, sua arma é do tipo: %d, grana: %d" % (jogador.nome, nave.arma, jogador.grana))
+        print("Fazer uma melhoria vai lhe custar X$ 100,00. S/N?")
+        simounao = input("Armar > ")
+        if simounao == "s" and jogador.grana >= 100:
+            nave.arma = nave.arma + 1
+            jogador.grana = jogador.grana - 100
+        elif jogador.grana < 100:
+            print("vc nao tem grana")
+        else:
+            print("vc quem sabe...")
 
     def abastecer(self):
         print("Cap %s, seu gas esta em: %d/%d, grana: %d" % (jogador.nome, nave.gas, nave.gas_max, jogador.grana))
@@ -159,9 +168,6 @@ def main():
             menus.case(menus.comando + "1")
         elif menus.comando == "0":
             break
-
-
-
 
 #  FIM CLASSES  #
 
