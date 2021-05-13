@@ -13,15 +13,15 @@ class Jogador: # Classe Jogador
     grana = 1000
 
     def viajar(self, nome_pla):
-        planetaa = "marte"
-        print("Vc dever ter ido para marte")
-        print("vc foi para " + planetaa)
-        self.dist_x = Planetas[planetaa]["dist_x"]
-        self.dist_y = Planetas[planetaa]["dist_y"]
-        print(self.dist_y, self.dist_x)
-        planeta.nome_pla = planetaa
-        print(planeta.nome_pla)
+        origem = planeta.nome_pla
+        print("Vc já viu no radar e agora quer ir para....")
+        planeta.nome_pla = input("Destino> ")
+        distpercor = round(
+            ((planeta.dist_x - Planetas[nome_pla]["dist_x"]) ** 2 + (planeta.dist_y - Planetas[nome_pla]["dist_y"]) ** 2) ** (1 / 2))
+        print(distpercor)
+        nave.gas = nave.gas - distpercor
         return planeta.nome_pla
+
 
 
 
@@ -82,6 +82,8 @@ class Menus(Jogador):
 
 
     def status(self):
+        print("Vc esta no planeta: " + planeta.nome_pla)
+        print("Seu tanque de combustivel esta em: %d/%d " % (nave.gas, nave.gas_max))
         print("Cap %s, seu escudo esta em: %d/%d, grana: %d" % (jogador.nome, nave.escudo, nave.escudo_max, jogador.grana))
         print("Carga: ")
         print(nave.deposito)
