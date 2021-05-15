@@ -4,7 +4,10 @@
 
 #   INICIO CLASSES   #
 import random
-
+import time
+# import eventos
+import winsound
+from random import choices
 
 class Jogador: # Classe Jogador
     dist_x = 0
@@ -13,15 +16,58 @@ class Jogador: # Classe Jogador
     grana = 1000
 
     def viajar(self, nome_pla):
-        origem = planeta.nome_pla
-        print("Vc já viu no radar e agora quer ir para....")
-        planeta.nome_pla = input("Destino> ")
-        distpercor = round(
-            ((planeta.dist_x - Planetas[nome_pla]["dist_x"]) ** 2 + (planeta.dist_y - Planetas[nome_pla]["dist_y"]) ** 2) ** (1 / 2))
-        print(distpercor)
-        nave.gas = nave.gas - distpercor
-        return planeta.nome_pla
+        aux = nome_pla
+        print(nome_pla)
+        print(aux)
+        dist_plan = []
+        print("Com seu combustivel e possivel ir para: ")
+        for key in Planetas.keys():
+            raio = round(
+                ((planeta.dist_x - Planetas[key]["dist_x"]) ** 2 + (planeta.dist_y - Planetas[key]["dist_y"]) ** 2) ** (1 / 2))
+            if (raio < nave.gas) and (raio != 0):
+                dist_plan.append((Planetas[key]["nome"], raio))
+        print(dist_plan)
+        print("Para onde vai?")
+        planeta.nome_pla = input("Viajar > ")
+        self.eventos()
+        y = 39
+        for x in range(1, 40):
+            y = y - 1
+            print('\r', ' ' * x, '>', ' ' * y, '0', flush=True, end='', sep='')  # Animacao nave ate planeta
+            # print('\r', '>' * x, ' ' * y, '0', flush=True, end='', sep='')
+            time.sleep(0.02)
+        winsound.Beep(300, 500)
+        print("\nVc chegou em " + planeta.nome_pla)
 
+    def eventos(self):
+        escolhas = [1, 2, 3, 4, 5]
+        pesos = [10, 25, 25, 5, 35]
+
+        sorte = choices(escolhas, pesos, k=1)  # k e quantida de numeros eventados
+        event = sorte[0]
+
+        if event == 5:  # 35% de nada acontecer
+            print("Nada no seu caminho")
+        elif event == 4:  # 5% de chance de ganhar 200 creditos
+            print("Vc encontrou uma carteira com 200 creditos no seu caminho!")
+            jogador.grana = jogador.grana + 200
+        elif event == 3:  # 25% chance de encontrar com uma nave que queira fazer negocios
+            print("Vc encontro uma nave que quer negociar")
+            nave.deposito.append("terra")
+            print("Vc recebeu uma carga")
+            input("Digite <ENTER> para continuar")
+        elif event == 2:
+            print("nave inimiga, fugir ou lutar? F/L")
+            op = input("F/L >")
+            if op == "f":
+                print("fugiu")
+            else:
+                print("venceu")
+        elif event == 1:
+            print("chocar em um asteroid, escudo zera")
+            nave.escudo = 0
+        else:
+            print("erro")
 
 
 
@@ -50,7 +96,7 @@ class Menus(Jogador):
             #"01": self.ajuda,
             "11": self.status,
             "21": self.loja,  # Nao pode ter o () porque senao executa na lida, abaixo ele concatena
-            "31": "Radar",
+            "31": self.radar,
             "41": jogador.viajar,
             #"02": self.ajuda,
             "12": self.status,
@@ -59,7 +105,7 @@ class Menus(Jogador):
             "42": self.armar,
             "52": self.abastecer
         }
-        if item != "41":
+        if item != "41": # Opcao "viajar" tem de receber parametro
             return itens.get(item, "Nao existe essa opcao.")()  # "()" final doidera, tipo ele poe, nao entendi mas funciona
         else:
             return itens.get(item, "Nao existe essa opcao.")(planeta.nome_pla)
@@ -87,6 +133,10 @@ class Menus(Jogador):
         print("Cap %s, seu escudo esta em: %d/%d, grana: %d" % (jogador.nome, nave.escudo, nave.escudo_max, jogador.grana))
         print("Carga: ")
         print(nave.deposito)
+
+    @staticmethod
+    def radar():
+        print("Essa opcao noa vai ser implementada.")
 
     def comprar(self):
         print("Segue a lista do que vc pode comprar no planeta " + planeta.nome_pla)
@@ -182,7 +232,7 @@ Goods = {
 }
 Planetas = {"terra": {"nome": "terra", "tamanho": 3, "US": 2, "dist_x": 4, "dist_y": 2},
             "marte": {"nome": "marte", "tamanho": 2, "US": 20, "dist_x": 4, "dist_y": -2},
-            "vesculi": {"nome": "vesculi", "tamanho": 2, "US": 3, "dist_x": -2, "dist_y": -5}
+            "vesculi": {"nome": "vesculi", "tamanho": 2, "US": 3, "dist_x": -20, "dist_y": -5}
             }
 #  FIM DICIONARIO  #
 
