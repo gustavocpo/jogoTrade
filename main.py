@@ -65,9 +65,22 @@ class Jogador: # Classe Jogador
             print("nave inimiga, fugir ou lutar? F/L")
             op = input("F/L >")
             if op == "f":
-                print("fugiu")
+                print("fugiu, mas levou um tiro, escudo -10")
+                nave.escudo = nave.escudo - 10
             else:
-                print("venceu")
+                naveinimiga = Nave()
+                while nave.escudo >= 0 or naveinimiga.escudo >= 0:
+                    nave.escudo = nave.escudo - naveinimiga.arma * 10
+                    print("Nave inimiga atira, seu escudo cai para " + str(nave.escudo))
+                    naveinimiga.escudo = naveinimiga.escudo - nave.arma * 10
+                    print("Vc retorna fogo e nave inimiga é avariada")
+                    if naveinimiga.escudo <= 0:
+                        print("venceu")
+                    elif nave.escudo <= 0:
+                        print("Vc morreu")
+                    else:
+                        print("O pau ta quebrando")
+                        time.sleep(1)
         elif event == 1:
             print("chocar em um asteroid, escudo zera")
             nave.escudo = 0
@@ -77,7 +90,7 @@ class Jogador: # Classe Jogador
 
 
 class Nave(Jogador):  # Subclasse -----Nave herdou as variaveis e metodos de Jogador
-    gas = 10
+    gas = 20
     gas_max = 20
     escudo = 100
     escudo_max = 100
