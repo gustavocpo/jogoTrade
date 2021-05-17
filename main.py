@@ -20,24 +20,29 @@ class Jogador: # Classe Jogador
         print(nome_pla)
         print(aux)
         dist_plan = []
+        cheklista = [] # Nao consegui usar a lista acima, deve ter como, isso foi uma gambis
         print("Com seu combustivel e possivel ir para: ")
         for key in Planetas.keys():
             raio = round(
                 ((planeta.dist_x - Planetas[key]["dist_x"]) ** 2 + (planeta.dist_y - Planetas[key]["dist_y"]) ** 2) ** (1 / 2))
             if (raio < nave.gas) and (raio != 0):
                 dist_plan.append((Planetas[key]["nome"], raio))
+                cheklista.append(Planetas[key]["nome"])
         print(dist_plan)
         print("Para onde vai?")
         planeta.nome_pla = input("Viajar > ")
-        self.eventos()
-        y = 39
-        for x in range(1, 40):
-            y = y - 1
-            print('\r', ' ' * x, '>', ' ' * y, '0', flush=True, end='', sep='')  # Animacao nave ate planeta
-            # print('\r', '>' * x, ' ' * y, '0', flush=True, end='', sep='')
-            time.sleep(0.02)
-        winsound.Beep(300, 500)
-        print("\nVc chegou em " + planeta.nome_pla)
+        if planeta.nome_pla not in cheklista: # usa a lista gambis, mas funciona...
+            print("nao existe planeta " + planeta.nome_pla)
+        else:
+            self.eventos()
+            y = 39
+            for x in range(1, 40):
+                y = y - 1
+                print('\r', ' ' * x, '>', ' ' * y, '0', flush=True, end='', sep='')  # Animacao nave ate planeta
+                # print('\r', '>' * x, ' ' * y, '0', flush=True, end='', sep='')
+                time.sleep(0.01)
+            winsound.Beep(300, 500)
+            print("\nVc chegou em " + planeta.nome_pla)
 
     def eventos(self):
         escolhas = [1, 2, 3, 4, 5]
@@ -53,7 +58,7 @@ class Jogador: # Classe Jogador
             jogador.grana = jogador.grana + 200
         elif event == 3:  # 25% chance de encontrar com uma nave que queira fazer negocios
             print("Vc encontro uma nave que quer negociar")
-            nave.deposito.append("terra")
+            nave.deposito.append(random.choice(list(Goods.keys())))
             print("Vc recebeu uma carga")
             input("Digite <ENTER> para continuar")
         elif event == 2:
@@ -230,9 +235,21 @@ Goods = {
     "alcool": 5,
     "tiberium": 7
 }
-Planetas = {"terra": {"nome": "terra", "tamanho": 3, "US": 2, "dist_x": 4, "dist_y": 2},
-            "marte": {"nome": "marte", "tamanho": 2, "US": 20, "dist_x": 4, "dist_y": -2},
-            "vesculi": {"nome": "vesculi", "tamanho": 2, "US": 3, "dist_x": -20, "dist_y": -5}
+Planetas = {"tudush": {"nome": "tudush", "tamanho": 1, "US": 1, "dist_x": 13, "dist_y": 9},
+            "momouc": {"nome": "momouc", "tamanho": 2, "US": 2, "dist_x": 2,  "dist_y": 8},
+            "zapis":  {"nome": "zapis", "tamanho": 3, "US": 1, "dist_x": 12, "dist_y": 7},
+            "chukna": {"nome": "chukna", "tamanho": 5, "US": 2, "dist_x": 9,  "dist_y": 14},
+            "kkanik": {"nome": "kkanik", "tamanho": 3, "US": 2, "dist_x": 8,  "dist_y": 6},
+            "apicat": {"nome": "apicat", "tamanho": 2, "US": 1, "dist_x": 5,  "dist_y": 1},
+            "hstula": {"nome": "hstula", "tamanho": 1, "US": 2, "dist_x": 11, "dist_y": 4},
+            "piktle": {"nome": "piktle", "tamanho": 3, "US": 1, "dist_x": 3,  "dist_y": 5},
+            "rupita": {"nome": "rupita", "tamanho": 3, "US": 2, "dist_x": 15, "dist_y": 11},
+            "bosshi": {"nome": "bosshi", "tamanho": 4, "US": 1, "dist_x": 10, "dist_y": 3},
+            "karaii": {"nome": "karaii", "tamanho": 3, "US": 2, "dist_x": 7,  "dist_y": 13},
+            "teknot": {"nome": "teknot", "tamanho": 3, "US": 1, "dist_x": 14, "dist_y": 2},
+            "terra":  {"nome": "terra", "tamanho": 3, "US": 2, "dist_x": 6,  "dist_y": 12},
+            "marte":  {"nome": "marte", "tamanho": 2, "US": 5, "dist_x": 1,  "dist_y": 15},
+            "vescul": {"nome": "vescul", "tamanho": 2, "US": 3, "dist_x": 4,  "dist_y": 10}
             }
 #  FIM DICIONARIO  #
 
