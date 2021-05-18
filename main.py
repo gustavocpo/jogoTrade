@@ -48,7 +48,7 @@ class Jogador: # Classe Jogador
         escolhas = [1, 2, 3, 4, 5]
         pesos = [10, 25, 25, 5, 35]
 
-        sorte = choices(escolhas, pesos, k=1)  # k e quantida de numeros eventados
+        sorte = choices(escolhas, pesos, k=1)  # k e quantidade de numeros eventados
         event = sorte[0]
 
         if event == 5:  # 35% de nada acontecer
