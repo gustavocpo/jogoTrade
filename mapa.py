@@ -14,20 +14,25 @@ Planetas = {"tudush": {"nome": "tudush ", "tamanho": 1, "US": 1, "dist_x": 13, "
             "marte":  {"nome": "marte  ", "tamanho": 2, "US": 5, "dist_x": 1,  "dist_y": 15},
             "vescul": {"nome": "vescul ", "tamanho": 2, "US": 3, "dist_x": 4,  "dist_y": 10}
             }
-achou = False
-interacoes = 0
-for l in range(1, 16):
-    for c in range(1, 16):
-        for k in Planetas:
-            interacoes = interacoes + 1
-            if l == Planetas[k]["dist_x"] and c == Planetas[k]["dist_y"]:
-                achou = True
-                npla = Planetas[k]["nome"]
-        if achou is False:
-            print("# "*4, end='')
-        else:
-            print(npla + " ", end='')
-            #print(". "*4, end='')
-            achou = False
-    print("")
-print(interacoes)
+
+def printa_mapa():
+    achou = False
+    interacoes = 0
+    for l in range(1, 16):
+        for c in range(1, 16):
+            for k in Planetas:
+                interacoes = interacoes + 1
+                if l == Planetas[k]["dist_x"] and c == Planetas[k]["dist_y"]:
+                    achou = True
+                    npla = Planetas[k]["nome"]
+            if achou is False:
+                print("# "*4, end='')
+            else:
+                print(npla + " ", end='')
+                #print(". "*4, end='')
+                achou = False
+        print("")
+    print(interacoes)
+
+if __name__ == "__main__":
+    printa_mapa()

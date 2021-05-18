@@ -26,5 +26,5 @@ def eventos():
     else:
         print("erro")
 
-
-eventos()
+if __name__ == "__main__":
+    eventos()

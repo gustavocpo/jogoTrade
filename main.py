@@ -5,9 +5,9 @@
 #   INICIO CLASSES   #
 import random
 import time
-# import eventos
-import winsound
-import os 
+import eventos
+import mapa
+# import winsound
 from random import choices
 
 class Jogador: # Classe Jogador
@@ -17,6 +17,7 @@ class Jogador: # Classe Jogador
     grana = 1000
 
     def viajar(self, nome_pla):
+        mapa.printa_mapa()
         aux = nome_pla
         print(nome_pla)
         print(aux)
@@ -42,7 +43,7 @@ class Jogador: # Classe Jogador
                 print('\r', ' ' * x, '>', ' ' * y, '0', flush=True, end='', sep='')  # Animacao nave ate planeta
                 # print('\r', '>' * x, ' ' * y, '0', flush=True, end='', sep='')
                 time.sleep(0.01)
-            winsound.Beep(300, 500)
+            # winsound.Beep(300, 500)
             print("\nVc chegou em " + planeta.nome_pla)
 
     def eventos(self):
@@ -74,8 +75,6 @@ class Jogador: # Classe Jogador
             nave.escudo = 0
         else:
             print("erro")
-
-
 
 class Nave(Jogador):  # Subclasse -----Nave herdou as variaveis e metodos de Jogador
     gas = 10
@@ -205,6 +204,7 @@ menus = Menus()
 planeta = Planeta()
 
 def main():
+
     menun2 = ("0", "1", "2", "3", "4")
     print("Jogo Didatico")
     print("Digite seu nome comandante")
@@ -236,8 +236,28 @@ Goods = {
     "alcool": 5,
     "tiberium": 7
 }
-
+Planetas = {"tudush": {"nome": "tudush", "tamanho": 1, "US": 1, "dist_x": 13, "dist_y": 9},
+            "momouc": {"nome": "momouc", "tamanho": 2, "US": 2, "dist_x": 2,  "dist_y": 8},
+            "zapis":  {"nome": "zapis", "tamanho": 3, "US": 1, "dist_x": 12, "dist_y": 7},
+            "chukna": {"nome": "chukna", "tamanho": 5, "US": 2, "dist_x": 9,  "dist_y": 14},
+            "kkanik": {"nome": "kkanik", "tamanho": 3, "US": 2, "dist_x": 8,  "dist_y": 6},
+            "apicat": {"nome": "apicat", "tamanho": 2, "US": 1, "dist_x": 5,  "dist_y": 1},
+            "hstula": {"nome": "hstula", "tamanho": 1, "US": 2, "dist_x": 11, "dist_y": 4},
+            "piktle": {"nome": "piktle", "tamanho": 3, "US": 1, "dist_x": 3,  "dist_y": 5},
+            "rupita": {"nome": "rupita", "tamanho": 3, "US": 2, "dist_x": 15, "dist_y": 11},
+            "bosshi": {"nome": "bosshi", "tamanho": 4, "US": 1, "dist_x": 10, "dist_y": 3},
+            "karaii": {"nome": "karaii", "tamanho": 3, "US": 2, "dist_x": 7,  "dist_y": 13},
+            "teknot": {"nome": "teknot", "tamanho": 3, "US": 1, "dist_x": 14, "dist_y": 2},
+            "terra":  {"nome": "terra", "tamanho": 3, "US": 2, "dist_x": 6,  "dist_y": 12},
+            "marte":  {"nome": "marte", "tamanho": 2, "US": 5, "dist_x": 1,  "dist_y": 15},
+            "vescul": {"nome": "vescul", "tamanho": 2, "US": 3, "dist_x": 4,  "dist_y": 10}
+            }
 #  FIM DICIONARIO  #
 
 if __name__ == "__main__":
+    # Quando => python3 main.py for executado
+    # o __name__ de main.py é __main__, então:
+    # Tudo o que estiver sendo executado nesse if é o que será o programa compilado, mas não os importados
+    
     main()
+    eventos()
