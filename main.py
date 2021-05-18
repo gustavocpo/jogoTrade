@@ -7,6 +7,7 @@ import random
 import time
 # import eventos
 import winsound
+import os 
 from random import choices
 
 class Jogador: # Classe Jogador
