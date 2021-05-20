@@ -65,7 +65,7 @@ class Jogador: # Classe Jogador
             input("Digite <ENTER> para continuar")
         elif event == 2:
             print("nave inimiga, fugir ou lutar? F/L")
-            op = input("F/L >")
+            op = str.lower(input("F/L >"))
             if op == "f":
                 print("fugiu")
             else:
@@ -125,7 +125,7 @@ class Menus(Jogador):
             if menus.comando == "+":
                 print("Escolha uma opcao: <0-volta> <1-status> <2-comprar> <3-vender> <4-armar> <5-abastecer>")
             elif menus.comando not in menun1:
-                print("Opção invalida")
+                print("Opção invalida <+> para opcoes")
             elif menus.comando != "0":
                 menus.case(menus.comando + "2")
             elif menus.comando == "0":
@@ -172,7 +172,7 @@ class Menus(Jogador):
     def armar(self):
         print("Cap %s, sua arma é do tipo: %d, grana: %d" % (jogador.nome, nave.arma, jogador.grana))
         print("Fazer uma melhoria vai lhe custar X$ 100,00. S/N?")
-        simounao = input("Armar > ")
+        simounao = str.lower(input("Armar > "))
         if simounao == "s" and jogador.grana >= 100:
             nave.arma = nave.arma + 1
             jogador.grana = jogador.grana - 100
@@ -221,7 +221,7 @@ def main():
         if menus.comando == "+":
             print("Escolha uma opcao: <1-status> <2-loja> <3-radar> <4-viajar>")
         elif menus.comando not in menun2:
-            print("Opção invalida")
+            print("Opção invalida <+> para opcoes")
         elif menus.comando != "0":
             menus.case(menus.comando + "1")
         elif menus.comando == "0":

@@ -33,6 +33,24 @@ def printa_mapa():
                 achou = False
         print("")
     print(interacoes)
+# "tudush": {"nome": "tudush ", "tamanho": 1, "US": 1, "dist_x": 13, "dist_y": 9},
+#  tudush,1,1,13,9
+def lerplanetas():
+    arquivo = open('arquivo.txt', 'r')
+    campo = ""
+    l1 = ""
+    while True:
+        letra = arquivo.read(1)
+        campo = campo + letra
+        if letra == ",":
+            l1 = campo
+            campo = ""
+        if not letra:
+            break
+    print(campo)
+    arquivo.close()
+
 
 if __name__ == "__main__":
     printa_mapa()
+    # lerplanetas()
