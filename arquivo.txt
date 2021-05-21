@@ -1,1 +1,15 @@
-tudush,1,1,13,9
+momouc|2|2|1|1
+zapis|3|1|12|7
+chukna|5|2|9|14
+tudush|1|1|13|9
+kkanik|3|2|8|6
+apicat|2|1|5|1
+hstula|1|2|11|4
+piktle|3|1|3|5
+rupita|3|2|15|11
+bosshi|4|1|10|3
+karaii|3|2|7|13
+teknot|3|1|14|2
+terra|3|2|6|12
+marte|2|5|1|15
+vescul|2|3|4|10
